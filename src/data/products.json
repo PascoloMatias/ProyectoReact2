@@ -1,0 +1,51 @@
+
+[
+    {
+      "id": "Casco-Seguridad",
+      "name": " Casco de Seguridad Industrial",
+      "avatar": "../img/cascoseguridad.png",
+      "category": "EPP",
+      "stock": 1
+    },
+  
+    {
+      "id": "gafas-proteccion",
+      "name": " Gafas con Proteccion Visual Lateral",
+      "avatar": "../img/proteccion-visual.jpg",
+      "category": "EPP",
+      "stock": 4
+    },
+  
+    {
+      "id": "Guantes-de-trabajo",
+      "name": " Guantes",
+      "avatar": "../img/guantes-de-trabajo.jpg",
+      "category": "guantes",
+      "stock": 8
+    },
+  
+    {
+      "id": "guantes-poliuretano",
+      "name": " Guantes de Seguridad",
+      "avatar": "../img/guantes-trabajo.jpg",
+      "category": "guantes",
+      "stock": 6 
+    },
+  
+    {
+      "id": "proteccion-auditiva",
+      "name": "Protector Auditivo",
+      "avatar": "../img/proteccion-auditiva.jpg",
+      "category": "EPP",
+      "stock": 5
+    },
+  
+    {
+      "id": "proteccion-respiratoria",
+      "name": " Proteccion Respiratoria",
+      "avatar": "../img/proteccion-respiratoria.jpg",
+      "category": "EPP",
+      "stock": 5
+    }
+
+  ]
