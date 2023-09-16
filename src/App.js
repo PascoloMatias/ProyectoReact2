@@ -4,9 +4,10 @@ import './App.css';
 import { ItemListContainer } from './components/ItemListContainer';
 import { ItemDetailContainer } from './components/ItemDetailContainer'; 
 import { NavBar } from './components/NavBar';
+import { CartProvider } from './contexts/CartContext';
 
 function App() {
-  return (
+  return (<CartProvider>
     <BrowserRouter> 
     <NavBar />
     <Routes>
@@ -15,7 +16,8 @@ function App() {
       <Route path='/item/:id' element = {<ItemDetailContainer/>}/>
 
     </Routes> 
-    </BrowserRouter>  
+    </BrowserRouter> 
+    </CartProvider> 
   );
 }
 
