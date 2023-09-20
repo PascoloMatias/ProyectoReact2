@@ -1,26 +1,44 @@
-import { Children, createContext, useState } from "react"; //creo un contexto
+import React from "react";
 
-export const CartContext = createContext([]);
+export const CartContext = React.createContext(null);
 
-export const CartProvider = ({children}) => {
-    const [items, setItems] = useState([])
+export const CartProvider = ({ children }) => {
+  const [items, setItems] = React.useState([]);
 
+  const addProduct = (product, quantity) =>
+    setItems((prev) => [...prev, { ...product, quantity }]);
 
-    const addItem = (product, quantity) => setItems(prev => [...prev, {product, quantity}])
-    console.log(items)
+   const totalWidget = items.reduce((acc, val) => acc + val.quantity, 0)
 
-    const removeItem = id => {
-         const itemFiltered = items.filter(item => item.id === id)
-        setItems(itemFiltered)
-     }
+   console.log("total", totalWidget )         
+   
+    
+  const removeProduct = (product) =>
+    items.filter((item) => item.id !== product.id);
 
-    const clear = () => setItems([])
+  const clear = () => setItems([]);
 
-    return (
-        <CartContext.Provider 
-        value ={{addItem, removeItem, clear}}>
-            {children}</CartContext.Provider>
-    )
+  const isInCart = (productId) => {
+    return items.some((product) => product.id === productId);
+  };
+
+  return (
+    <CartContext.Provider
+      value={{
+        addProduct,
+
+        removeProduct,
+
+        isInCart,
+
+        clear,
+
+        items,
+
+        totalWidget,
+      }}
+    >
+      {children}
+    </CartContext.Provider>
+  );
 };
-
-

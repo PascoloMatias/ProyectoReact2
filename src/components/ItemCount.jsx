@@ -1,32 +1,42 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { CartContext } from "../contexts/CartContext";
 
-const stock = 7;
 
-export const ItemCount = () => {
-  const [count, setCount] = useState(1);
+
+export const ItemCount = ({ product }) => {
+
+  const { addProduct, isInCart } = useContext(CartContext);
+
+  const [count, setCount] = useState(0);
+
+  const stock = product?.stock;
 
   const handleDecreaseCount = () => {
-    if (count > 1) {
+    if (count > 0) {
       setCount((prev) => prev - 1);
     }
   };
 
   const handleIncreaseCount = () => {
-    if (stock > count) {
-      setCount((prev) => prev + 1);
+    if (count < stock) {
+      setCount(count + 1);
     }
   };
 
   const onAdd = () => {
-    alert(count);
+    const ifExistProduct = isInCart(product.id);
+    if (!ifExistProduct) {
+      addProduct(product, count);
+      return;
+     }
+
   };
 
   return (
-    <div className="itemCount">
-      <span onClick={handleDecreaseCount}>-</span>
+     <div className="itemCount"> <button onClick={handleDecreaseCount}>-</button>
       <span>{count}</span>
-      <span onClick={handleIncreaseCount}>+</span>
-      <button onClick ={onAdd}>Agregar al carrito</button>
+      <button onClick={() => handleIncreaseCount()} >+</button>
+      <button onClick={onAdd} disabled={count === 0}> Agregar al carrito</button>
     </div>
   );
 };

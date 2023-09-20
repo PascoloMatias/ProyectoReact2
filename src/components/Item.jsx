@@ -10,7 +10,10 @@ export const Item = ({ product }) => {
       <Card.Img variant="top" src={product.avatar} />
       <Card.Body>
         <Card.Title>{product.name}</Card.Title>
-        <Card.Text>Elementos Proteccion Personal</Card.Text>
+    
+         {/* <Card.Text> {product.categoryId} </Card.Text>  */}
+         <Card.Text> Stock: {product.stock}</Card.Text> 
+         {/* <Card.Text>{product.precio}</Card.Text> */}
         <Button onClick={() => navigate(`/item/${product.id}`)} variant="primary">Ver Producto</Button>
         <ItemCount></ItemCount>
       </Card.Body>

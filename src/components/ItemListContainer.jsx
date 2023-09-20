@@ -2,10 +2,27 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Container from "react-bootstrap/Container";
+// import { getFirestore, getDocs, collection } from "firebase/firestore";
 
 
 import data from "../data/products.json";
 import {ItemList} from "./ItemList"; 
+
+// useEffect (() => {     
+//   const db = getFirestore();
+
+//   const refCollection = collection(db, "productos");
+
+//   getDocs(refCollection).then((snapshot) => {
+//     if (snapshot.size === 0) console.log("no results");
+//     else
+//      console.log(
+//     snapshot.docs.map((doc) => {
+//       return { id: doc.id, ...doc.data() };
+//     }))
+//   })
+// });
+
 
 export const ItemListContainer = (props) => {
   const [products, setProducts] = useState([]);
@@ -30,9 +47,9 @@ export const ItemListContainer = (props) => {
         );
         setProducts(productsFiltered);       
       }
-      setIsLoading(false)
-    });
-  },[])
+      
+    }).finally(()=> setIsLoading(false)) ;
+  },[id])
 
   if(isLoading) return <div> Loading... </div>
   
@@ -46,3 +63,4 @@ export const ItemListContainer = (props) => {
     </Container>
   );
 };
+
