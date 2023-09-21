@@ -1,10 +1,10 @@
-import { Container, Table } from "react-bootstrap";
+import { Button, Container, Table } from "react-bootstrap";
 import { useContext } from "react";
 import { CartContext } from "../contexts/CartContext";
 import { ItemList } from "./ItemList";
 
 export const Cart = () => {
-    const { items } = useContext(CartContext)
+    const { items, removeProduct } = useContext(CartContext)
 
     const total = () =>
     items.reduce(
@@ -26,9 +26,13 @@ export const Cart = () => {
         <tbody>
             {items.map(item => 
                 <tr key={item.id}>
-                    <td>{item.name}</td>
+                    <td>{item.nombre}</td>
                     <td>{item.precio}</td>
                     <td>{item.quantity}</td>
+                    <td> <button onClick={() =>      removeProduct(item.id)}>
+                            Eliminar
+                        </button>
+                    </td>  
                 </tr>
             )}
         </tbody>
