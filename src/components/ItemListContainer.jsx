@@ -16,8 +16,8 @@ import {ItemList} from "./ItemList";
 //   getDocs(refCollection).then((snapshot) => {
 //     if (snapshot.size === 0) console.log("no results");
 //     else
-//      console.log(
-//     snapshot.docs.map((doc) => {
+//      setProducts(
+//       snapshot.docs.map((doc) => {
 //       return { id: doc.id, ...doc.data() };
 //     }))
 //   })

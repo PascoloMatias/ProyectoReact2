@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import {ItemDetail} from "./ItemDetail"
-import { getFirestore, getDoc, doc } from "firebase/firestore";
+// import { getFirestore, getDoc, doc } from "firebase/firestore";
 
 import data from "../data/products.json";
 import {ItemList} from "./ItemList"; 
