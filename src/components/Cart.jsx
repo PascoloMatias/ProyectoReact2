@@ -1,16 +1,56 @@
-import { Button, Container, Table } from "react-bootstrap";
-import { useContext } from "react";
+import { Container, Table } from "react-bootstrap";
+import { useContext, useState } from "react";
 import { CartContext } from "../contexts/CartContext";
+import { Button } from "react-bootstrap";
+import { getFirestore, collection, addDoc } from "firebase/firestore"
+
 import { ItemList } from "./ItemList";
+import { Form } from "react-router-dom";
 
 export const Cart = () => {
-    const { items, removeProduct } = useContext(CartContext)
+    const [formValues, setFormValues] = useState({
+        name: "",
+        email: "",
+        phone:"",
+    })
+
+    const { clear, items, removeProduct } = useContext(CartContext)
 
     const total = () =>
     items.reduce(
         (acumulador, valorActual) =>
         acumulador + valorActual.quantity * valorActual.precio, 0
     )
+
+    const handleChange = ev => {
+        setFormValues(prev => ({
+            ...prev,[ev.target.name]: ev.target.value,
+        }))
+    }
+
+    const sendOrder = () => {
+        const order = {
+            buyer: formValues,
+            items: items,
+            total: total(),
+        }
+    
+        const db = getFirestore()
+        const orderCollection = collection(db, "orders")
+    
+        addDoc(orderCollection, order).then(({ id }) => {
+            if (id) {
+                setFormValues({
+                    name: "",
+                    email: "",
+                    phone:"",
+                })
+                
+                clear()
+                alert("su orden: " + id + "ha sido completada")
+            }
+        })
+    }
 
   return (
     <Container>
@@ -43,6 +83,41 @@ export const Cart = () => {
             </tr>
         </tfoot>
       </Table>
+      <h2> Ingresar Datos de Usuario </h2>
+      <Form>
+        <Form.Group className= "mb-3" controlId="formBasicEmail">
+            <Form.Label > Nombre </Form.Label>
+            <Form.Control 
+              onChange={handleChange}
+              value={formValues.name}
+              type= "text"
+              name= "name">    
+            </Form.Control>
+        </Form.Group>
+
+        <Form.Group className= "mb-3" controlId="formBasicEmail">
+            <Form.Label > Email</Form.Label>
+            <Form.Control 
+              onChange={handleChange}
+              value={formValues.email}
+              type= "email"
+              name= "email">    
+            </Form.Control>
+        </Form.Group>
+
+        <Form.Group className= "mb-3">
+            <Form.Label > Telefono </Form.Label>
+            <Form.Control 
+              onChange={handleChange}
+              value={formValues.phone}
+              type= "text"
+              name= "phone">    
+            </Form.Control>
+        </Form.Group>
+      </Form>
+      <button onClick={sendOrder}> Comprar </button>
     </Container>
   );
 };
+
+
