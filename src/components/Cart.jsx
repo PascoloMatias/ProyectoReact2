@@ -1,14 +1,14 @@
-import { Container, Table } from "react-bootstrap";
+import { Container, Table, Form, } from "react-bootstrap";
 import { useContext, useState } from "react";
 import { CartContext } from "../contexts/CartContext";
-import { Button } from "react-bootstrap";
+
 import { getFirestore, collection, addDoc } from "firebase/firestore"
 
-import { ItemList } from "./ItemList";
-import { Form } from "react-router-dom";
+
+
 
 export const Cart = () => {
-    const [formValues, setFormValues] = useState({
+    const [formValues, setFormValues,] = useState({
         name: "",
         email: "",
         phone:"",
@@ -54,7 +54,7 @@ export const Cart = () => {
 
   return (
     <Container>
-      <h1> Cart </h1>
+      <h1> Mis Productos </h1>
       <Table>
         <thead>
             <tr>

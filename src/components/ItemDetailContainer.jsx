@@ -4,8 +4,7 @@ import Container from "react-bootstrap/Container";
 import {ItemDetail} from "./ItemDetail"
 import { getFirestore, getDoc, doc } from "firebase/firestore";
 
-import data from "../data/products.json";
-import {ItemList} from "./ItemList"; 
+
 
 export const ItemDetailContainer = (props) => {
     const [product, setProduct] = useState(null);
@@ -26,7 +25,6 @@ export const ItemDetailContainer = (props) => {
     
   return (
     <Container className="mt-4">
-      {/* <h1> {DETALLE} </h1> */}
       <ItemDetail product={product}>/ </ItemDetail>
     </Container>
   );

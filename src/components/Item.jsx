@@ -1,6 +1,6 @@
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import { useNavigate } from "react-router-dom";
+import {useNavigate } from "react-router-dom";
 import { ItemCount } from "./ItemCount";
 
 export const Item = ({ product }) => {
@@ -22,9 +22,10 @@ export const Item = ({ product }) => {
           <b>Stock:</b> {product.stock}
         </Card.Text>
         <Card.Text>
-          <b>Price:</b> {product.precio}
+          <b>Precio:</b> {product.precio}
         </Card.Text>
-        <Button onClick={() => navigate(`/item/${product.id}`)} variant="primary">Ver Producto</Button>
+        
+         <Button onClick={() => navigate(`/item/${product.id}`)} variant="primary">Ver Producto</Button>
         <ItemCount></ItemCount>
       </Card.Body>
     </Card>
