@@ -69,7 +69,7 @@ export const Cart = () => {
                     <td>{item.nombre}</td>
                     <td>{item.precio}</td>
                     <td>{item.quantity}</td>
-                    <td> <button onClick={() =>      removeProduct(item.id)}>
+                    <td><button onClick={() =>      removeProduct(item.id)}>
                             Eliminar
                         </button>
                     </td>  
@@ -80,6 +80,10 @@ export const Cart = () => {
             <tr>
                 <td>Total</td>
                 <td> {total()} </td>
+            </tr>
+
+            <tr><button onClick={() => clear()}> Vaciar Carrito
+                </button>
             </tr>
         </tfoot>
       </Table>

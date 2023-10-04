@@ -5,7 +5,7 @@ import Container from "react-bootstrap/Container";
 import { getFirestore, getDocs, collection } from "firebase/firestore";
 
 
-import data from "../data/products.json";
+
 import {ItemList} from "./ItemList"; 
 
 
@@ -27,10 +27,18 @@ export const ItemListContainer = (props) => {
       .then((snapshot) => {
         if (snapshot.size === 0) console.log("no results");
         else {
-          const data = snapshot.docs.map((doc) => {
-            return { id: doc.id, ...doc.data() };
-          });
-
+          let data;
+          if (id) {
+            const oldData = snapshot.docs.map((doc) => {
+              return { id: doc.id, ...doc.data() };
+              
+            });
+            data = oldData.filter((doc) => doc.categoryId === id);
+          } else {
+            data = snapshot.docs.map((doc) => {
+              return { id: doc.id, ...doc.data() };
+            });
+          }
           setProducts(data);
         }
       })

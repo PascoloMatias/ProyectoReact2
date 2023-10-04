@@ -31,7 +31,8 @@ export const CartProvider = ({ children }) => {
     setItems(itemsFiltered);
   };
 
-  const clear = () => setItems([]);
+  const clear = () => {setItems([]);
+  };
 
   const isInCart = (productId) => {
     return items.some((product) => product.id === productId);
