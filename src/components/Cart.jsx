@@ -1,4 +1,4 @@
-import { Container, Table, Form, } from "react-bootstrap";
+import { Container, Table, Form, Button, } from "react-bootstrap";
 import { useContext, useState } from "react";
 import { CartContext } from "../contexts/CartContext";
 
@@ -46,7 +46,7 @@ export const Cart = () => {
                     phone:"",
                 })
                 
-                clear()
+                //clear()
                 alert("su orden: " + id + "ha sido completada")
             }
         })
@@ -82,11 +82,16 @@ export const Cart = () => {
                 <td> {total()} </td>
             </tr>
 
-            <tr><button onClick={() => clear()}> Vaciar Carrito
+            {/* <tr><button onClick={() => clear()}> Vaciar Carrito
                 </button>
-            </tr>
+            </tr> */}
         </tfoot>
       </Table>
+
+      <Button className="btn btn-danger" onClick={() => clear()}>
+        Vaciar Carrito
+      </Button>
+
       <h2> Ingresar Datos de Usuario </h2>
       <Form>
         <Form.Group className= "mb-3" controlId="formBasicEmail">
